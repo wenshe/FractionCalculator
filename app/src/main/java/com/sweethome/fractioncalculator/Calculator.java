@@ -18,7 +18,7 @@ public class Calculator
 
     private static final int MAX_NUMBER = 99999999;
     private Fraction _result;
-    private int[] _v;
+    private long[] _v;
     private int _inputIndex;
     private Calculator.CalcStatus _calcStatus;
     private Calculator.CalcOperator _calcOperator;
@@ -26,20 +26,20 @@ public class Calculator
     public Calculator()
     {
         super();
-        Init();
-        Clear();
+        init();
+        clear();
     }
 
-    private void Init()
+    private void init()
     {
         _result = new Fraction();
-        _v = new int[2];
+        _v = new long[2];
         _inputIndex = 0;
         _calcStatus = Calculator.CalcStatus.OK;
         _calcOperator = Calculator.CalcOperator.None;
     }
 
-    private Fraction GetInputValue() throws Exception
+    private Fraction getInputValue() throws Exception
     {
         Fraction result = new Fraction(0, 1);
         if (_inputIndex==-1)
@@ -59,7 +59,7 @@ public class Calculator
         return result;
     }
 
-    private void ClearInputValue()
+    private void clearInputValue()
     {
         _inputIndex = 0;
         _v[0] = 0;
@@ -67,20 +67,20 @@ public class Calculator
     }
 
     /////////////////////////////////////////
-    public void Clear()
+    public void clear()
     {
         _calcStatus = Calculator.CalcStatus.OK;
         _calcOperator = Calculator.CalcOperator.None;
         _result.setValue(0, 1);
-        ClearInputValue();
+        clearInputValue();
     }
 
-    public void ClearError()
+    public void clearError()
     {
-        ClearInputValue();
+        clearInputValue();
     }
 
-    public void BackSp()
+    public void backSp()
     {
         if ((_inputIndex >= 0) && (_inputIndex < 2))
         {
@@ -93,11 +93,11 @@ public class Calculator
         }
     }
 
-    public void NumPad(int num)
+    public void numPad(int num)
     {
         if ((_inputIndex >= 0) && (_inputIndex < 2))
         {
-            int newValue= (_v[_inputIndex] * 10 + num);
+            long newValue= (_v[_inputIndex] * 10 + num);
             if ((num >= 0) && (num <= 9) && (newValue <= MAX_NUMBER))
                 _v[_inputIndex] = newValue;
         }else if (_inputIndex==-1)
@@ -108,31 +108,31 @@ public class Calculator
         }
     }
 
-    public void Plus()
+    public void plus()
     {
-        Equal();
+        equal();
         _calcOperator = Calculator.CalcOperator.Plus;
     }
 
-    public void Minus()
+    public void minus()
     {
-        Equal();
+        equal();
         _calcOperator = Calculator.CalcOperator.Minus;
     }
 
-    public void Multiplication()
+    public void multi()
     {
-        Equal();
+        equal();
         _calcOperator = Calculator.CalcOperator.Multi;
     }
 
-    public void Division()
+    public void div()
     {
-        Equal();
+        equal();
         _calcOperator = Calculator.CalcOperator.Div;
     }
 
-    public void Slash()
+    public void slash()
     {
         if (_inputIndex == 0)
         {
@@ -140,15 +140,16 @@ public class Calculator
         }
     }
 
-    public void Equal()
+    public void equal()
     {
         try
         {
-            Fraction v = GetInputValue();
+            Fraction v = getInputValue();
             switch (_calcOperator)
             {
                 case None:
-                    _result = v;
+                    if (_inputIndex>=0)
+                        _result = v;
                     break;
                 case Plus:
                     _result.add(v);
@@ -170,10 +171,10 @@ public class Calculator
                     break;
             }
             _calcOperator = Calculator.CalcOperator.None;
-            ClearInputValue();
-            //_v[0]=_result.getNumerator();
-            //_v[1]=_result.getDenominator();
-            //_inputIndex=-1;
+            clearInputValue();
+            _v[0]=0;
+            _v[1]=1;
+            _inputIndex=-1;
         } catch (Exception e)
         {
             if (e.getMessage() == "DivByZero")
@@ -183,7 +184,7 @@ public class Calculator
             e.printStackTrace();
         }
     }
-    public int getInputValue(int index)
+    public long getInputValue(int index)
     {
         return _v[index];
     }

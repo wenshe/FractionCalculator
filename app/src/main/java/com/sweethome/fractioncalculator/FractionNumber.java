@@ -5,8 +5,8 @@ package com.sweethome.fractioncalculator;
  */
 
 final class Fraction extends Number {
-    private int numerator;
-    private int denominator;
+    private long numerator;
+    private long denominator;
 
     //Constructor
     public Fraction()
@@ -27,11 +27,11 @@ final class Fraction extends Number {
     }
 
 
-    public int getNumerator() {
+    public long getNumerator() {
         return this.numerator;
     }
 
-    public int getDenominator() {
+    public long getDenominator() {
         return this.denominator;
     }
 
@@ -45,7 +45,7 @@ final class Fraction extends Number {
         setValue(this.numerator,denominator);
     }
 
-    public void setValue(int numerator,int denominator)
+    public void setValue(long numerator, long denominator)
     {
         /*
         if(denominator == 0) {

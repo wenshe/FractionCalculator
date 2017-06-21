@@ -48,6 +48,9 @@ public class FractionNumberUnitTest
         Fraction f5_11=new Fraction(5,11);
         Fraction f6_13=new Fraction(6,13);
         Fraction f14_7=new Fraction(14,7);
+        Fraction f9999=new Fraction(9999,1);
+        Fraction f99999999=new Fraction(99999999,1);
+
 
 
         double v1_2_add_f2_3=(1.0/2.0)+(2.0/3.0);
@@ -64,5 +67,8 @@ public class FractionNumberUnitTest
         assertEquals(v5_11_mul_f6_13,f5_11_mul_f6_13.doubleValue(),1e-7);
         assertEquals(v6_13_div_f2_3,f6_13_div_f2_3.doubleValue(),1e-7);
         assertEquals(2.0,f14_7.doubleValue(),1e-7);
+        assertEquals(9999.0*9999.0,f9999.mul(f9999).doubleValue(),1e-7);
+        assertEquals(99999999.0*99999999.0,f99999999.mul(f99999999).doubleValue(),1e-7);
+
     }
 }

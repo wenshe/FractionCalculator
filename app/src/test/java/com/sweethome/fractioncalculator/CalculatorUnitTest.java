@@ -1,7 +1,6 @@
 package com.sweethome.fractioncalculator;
 
 import org.junit.Test;
-import org.junit.experimental.ParallelComputer;
 
 import static org.junit.Assert.assertEquals;
 
@@ -18,6 +17,7 @@ public class CalculatorUnitTest
         assertEquals(result.doubleValue(),0.0f,1e-7);
         assertEquals(result.getNumerator(),0);
         assertEquals(result.getDenominator(),1);
+
 
         //input value _v[]={0,0}
         assertEquals(calculator.getInputIndex(),0);
@@ -44,46 +44,46 @@ public class CalculatorUnitTest
     {
         Calculator calculator=new Calculator();
 
-        calculator.NumPad(1);
-        calculator.NumPad(2);
-        calculator.NumPad(3);
-        calculator.Clear();
+        calculator.numPad(1);
+        calculator.numPad(2);
+        calculator.numPad(3);
+        calculator.clear();
         calculatorReset_isCorrect(calculator);
 
-        calculator.NumPad(7);
-        calculator.NumPad(8);
-        calculator.NumPad(9);
-        calculator.Plus();
-        calculator.Clear();
+        calculator.numPad(7);
+        calculator.numPad(8);
+        calculator.numPad(9);
+        calculator.plus();
+        calculator.clear();
         calculatorReset_isCorrect(calculator);
 
-        calculator.NumPad(7);
-        calculator.NumPad(8);
-        calculator.NumPad(9);
-        calculator.Equal();
-        calculator.Clear();
+        calculator.numPad(7);
+        calculator.numPad(8);
+        calculator.numPad(9);
+        calculator.equal();
+        calculator.clear();
         calculatorReset_isCorrect(calculator);
 
-        calculator.NumPad(7);
-        calculator.NumPad(8);
-        calculator.NumPad(9);
-        calculator.Plus();
-        calculator.NumPad(1);
-        calculator.NumPad(2);
-        calculator.NumPad(3);
-        calculator.Clear();
+        calculator.numPad(7);
+        calculator.numPad(8);
+        calculator.numPad(9);
+        calculator.plus();
+        calculator.numPad(1);
+        calculator.numPad(2);
+        calculator.numPad(3);
+        calculator.clear();
         calculatorReset_isCorrect(calculator);
 
 
-        calculator.NumPad(7);
-        calculator.NumPad(8);
-        calculator.NumPad(9);
-        calculator.Plus();
-        calculator.NumPad(1);
-        calculator.NumPad(2);
-        calculator.NumPad(3);
-        calculator.Equal();
-        calculator.Clear();
+        calculator.numPad(7);
+        calculator.numPad(8);
+        calculator.numPad(9);
+        calculator.plus();
+        calculator.numPad(1);
+        calculator.numPad(2);
+        calculator.numPad(3);
+        calculator.equal();
+        calculator.clear();
         calculatorReset_isCorrect(calculator);
     }
 
@@ -91,36 +91,36 @@ public class CalculatorUnitTest
     public void calculatorClearError_isCorrect() throws Exception
     {
         Calculator calculator=new Calculator();
-        calculator.NumPad(1);
-        calculator.NumPad(2);
-        calculator.NumPad(3);
-        calculator.ClearError();
+        calculator.numPad(1);
+        calculator.numPad(2);
+        calculator.numPad(3);
+        calculator.clearError();
         calculatorReset_isCorrect(calculator);
 
-        calculator.Clear();
-        calculator.NumPad(1);
-        calculator.NumPad(2);
-        calculator.NumPad(3);
-        calculator.Plus();
-        calculator.NumPad(4);
-        calculator.NumPad(5);
-        calculator.NumPad(6);
-        calculator.ClearError();
+        calculator.clear();
+        calculator.numPad(1);
+        calculator.numPad(2);
+        calculator.numPad(3);
+        calculator.plus();
+        calculator.numPad(4);
+        calculator.numPad(5);
+        calculator.numPad(6);
+        calculator.clearError();
         assertEquals(calculator.getInputValue(0),0);
         assertEquals(calculator.getInputValue(1),0);
         assertEquals(calculator.getCalcOperator(),Calculator.CalcOperator.Plus);
         assertEquals(calculator.getResult().doubleValue(),123,1e-7);
 
 
-        calculator.Clear();
-        calculator.NumPad(1);
-        calculator.NumPad(2);
-        calculator.NumPad(3);
-        calculator.Slash();
-        calculator.NumPad(4);
-        calculator.NumPad(5);
-        calculator.NumPad(6);
-        calculator.ClearError();
+        calculator.clear();
+        calculator.numPad(1);
+        calculator.numPad(2);
+        calculator.numPad(3);
+        calculator.slash();
+        calculator.numPad(4);
+        calculator.numPad(5);
+        calculator.numPad(6);
+        calculator.clearError();
         assertEquals(calculator.getInputValue(0),0);
         assertEquals(calculator.getInputValue(1),0);
     }
@@ -129,59 +129,59 @@ public class CalculatorUnitTest
     public void calculatorBackSp_isCorrect() throws Exception
     {
         Calculator calculator=new Calculator();
-        calculator.NumPad(1);
-        calculator.NumPad(2);
-        calculator.NumPad(3);
+        calculator.numPad(1);
+        calculator.numPad(2);
+        calculator.numPad(3);
         assertEquals(calculator.getInputValue(0),123);
-        calculator.BackSp();
+        calculator.backSp();
         assertEquals(calculator.getInputValue(0),12);
-        calculator.BackSp();
+        calculator.backSp();
         assertEquals(calculator.getInputValue(0),1);
-        calculator.BackSp();
+        calculator.backSp();
         assertEquals(calculator.getInputValue(0),0);
-        calculator.BackSp();
+        calculator.backSp();
         assertEquals(calculator.getInputValue(0),0);
 
-        calculator.Clear();
-        calculator.NumPad(1);
-        calculator.NumPad(2);
-        calculator.NumPad(3);
-        calculator.Slash();
-        calculator.NumPad(4);
-        calculator.NumPad(5);
-        calculator.NumPad(6);
+        calculator.clear();
+        calculator.numPad(1);
+        calculator.numPad(2);
+        calculator.numPad(3);
+        calculator.slash();
+        calculator.numPad(4);
+        calculator.numPad(5);
+        calculator.numPad(6);
         assertEquals(calculator.getInputIndex(),1);
         assertEquals(calculator.getInputValue(0),123);
         assertEquals(calculator.getInputValue(1),456);
-        calculator.BackSp();
+        calculator.backSp();
         assertEquals(calculator.getInputIndex(),1);
         assertEquals(calculator.getInputValue(0),123);
         assertEquals(calculator.getInputValue(1),45);
-        calculator.BackSp();
+        calculator.backSp();
         assertEquals(calculator.getInputIndex(),1);
         assertEquals(calculator.getInputValue(0),123);
         assertEquals(calculator.getInputValue(1),4);
-        calculator.BackSp();
+        calculator.backSp();
         assertEquals(calculator.getInputIndex(),1);
         assertEquals(calculator.getInputValue(0),123);
         assertEquals(calculator.getInputValue(1),0);
-        calculator.BackSp();
+        calculator.backSp();
         assertEquals(calculator.getInputIndex(),0);
         assertEquals(calculator.getInputValue(0),123);
         assertEquals(calculator.getInputValue(1),0);
-        calculator.BackSp();
+        calculator.backSp();
         assertEquals(calculator.getInputIndex(),0);
         assertEquals(calculator.getInputValue(0),12);
         assertEquals(calculator.getInputValue(1),0);
-        calculator.BackSp();
+        calculator.backSp();
         assertEquals(calculator.getInputIndex(),0);
         assertEquals(calculator.getInputValue(0),1);
         assertEquals(calculator.getInputValue(1),0);
-        calculator.BackSp();
+        calculator.backSp();
         assertEquals(calculator.getInputIndex(),0);
         assertEquals(calculator.getInputValue(0),0);
         assertEquals(calculator.getInputValue(1),0);
-        calculator.BackSp();
+        calculator.backSp();
         assertEquals(calculator.getInputIndex(),0);
         assertEquals(calculator.getInputValue(0),0);
         assertEquals(calculator.getInputValue(1),0);
@@ -195,10 +195,10 @@ public class CalculatorUnitTest
         for (int i=0;i<9;i++)
         {
             v=v*10+i;
-            calculator.NumPad(i);
+            calculator.numPad(i);
             assertEquals(calculator.getInputValue(calculator.getInputIndex()), v);
         }
-        calculator.NumPad(9); //test the MaxNumber is 8 digi number
+        calculator.numPad(9); //test the MaxNumber is 8 digi number
         assertEquals(calculator.getInputValue(calculator.getInputIndex()), 12345678);
     }
 
@@ -206,34 +206,34 @@ public class CalculatorUnitTest
     public void calculatorPlus_isCorrect() throws Exception
     {
         Calculator calculator=new Calculator();
-        calculator.NumPad(1);
-        calculator.Plus();
-        calculator.NumPad(2);
-        calculator.Equal();
+        calculator.numPad(1);
+        calculator.plus();
+        calculator.numPad(2);
+        calculator.equal();
         assertEquals(calculator.getResult().getNumerator(),3);
         assertEquals(calculator.getResult().getDenominator(),1);
 
-        calculator.Clear();
-        calculator.NumPad(4);
-        calculator.NumPad(1);
-        calculator.NumPad(5);
-        calculator.Plus();
-        calculator.NumPad(7);
-        calculator.NumPad(5);
-        calculator.NumPad(9);
-        calculator.Equal();
+        calculator.clear();
+        calculator.numPad(4);
+        calculator.numPad(1);
+        calculator.numPad(5);
+        calculator.plus();
+        calculator.numPad(7);
+        calculator.numPad(5);
+        calculator.numPad(9);
+        calculator.equal();
         assertEquals(calculator.getResult().getNumerator(),1174);
         assertEquals(calculator.getResult().getDenominator(),1);
 
-        calculator.Clear();
-        calculator.NumPad(2);
-        calculator.Slash();
-        calculator.NumPad(3);
-        calculator.Plus();
-        calculator.NumPad(8);
-        calculator.Slash();
-        calculator.NumPad(9);
-        calculator.Equal();
+        calculator.clear();
+        calculator.numPad(2);
+        calculator.slash();
+        calculator.numPad(3);
+        calculator.plus();
+        calculator.numPad(8);
+        calculator.slash();
+        calculator.numPad(9);
+        calculator.equal();
         assertEquals(calculator.getResult().getNumerator(),42);
         assertEquals(calculator.getResult().getDenominator(),27);
         assertEquals(calculator.getResult().doubleValue(),42.0/27.0,1e-7);
@@ -243,37 +243,179 @@ public class CalculatorUnitTest
     public void calculatorMinus_isCorrect() throws Exception
     {
         Calculator calculator=new Calculator();
-        calculator.NumPad(1);
-        calculator.NumPad(9);
-        calculator.Minus();
-        calculator.NumPad(2);
-        calculator.Equal();
+        calculator.numPad(1);
+        calculator.numPad(9);
+        calculator.minus();
+        calculator.numPad(2);
+        calculator.equal();
         assertEquals(calculator.getResult().getNumerator(),17);
         assertEquals(calculator.getResult().getDenominator(),1);
 
-        calculator.Clear();
-        calculator.NumPad(4);
-        calculator.NumPad(1);
-        calculator.NumPad(5);
-        calculator.Minus();
-        calculator.NumPad(7);
-        calculator.NumPad(5);
-        calculator.NumPad(9);
-        calculator.Equal();
+        calculator.clear();
+        calculator.numPad(4);
+        calculator.numPad(1);
+        calculator.numPad(5);
+        calculator.minus();
+        calculator.numPad(7);
+        calculator.numPad(5);
+        calculator.numPad(9);
+        calculator.equal();
         assertEquals(calculator.getResult().getNumerator(),-344);
         assertEquals(calculator.getResult().getDenominator(),1);
 
-        calculator.Clear();
-        calculator.NumPad(5);
-        calculator.Slash();
-        calculator.NumPad(3);
-        calculator.Minus();
-        calculator.NumPad(8);
-        calculator.Slash();
-        calculator.NumPad(9);
-        calculator.Equal();
+        calculator.clear();
+        calculator.numPad(5);
+        calculator.slash();
+        calculator.numPad(3);
+        calculator.minus();
+        calculator.numPad(8);
+        calculator.slash();
+        calculator.numPad(9);
+        calculator.equal();
         assertEquals(calculator.getResult().getNumerator(),21);
         assertEquals(calculator.getResult().getDenominator(),27);
         assertEquals(calculator.getResult().doubleValue(),21.0/27.0,1e-7);
+    }
+
+    @Test
+    public void calculatorMultiplication_isCorrect() throws Exception
+    {
+        Calculator calculator=new Calculator();
+        calculator.numPad(8);
+        calculator.numPad(4);
+        calculator.multi();
+        calculator.numPad(5);
+        calculator.equal();
+        assertEquals(calculator.getResult().getNumerator(),420);
+        assertEquals(calculator.getResult().getDenominator(),1);
+
+        calculator.clear();
+        calculator.numPad(4);
+        calculator.numPad(1);
+        calculator.numPad(5);
+        calculator.multi();
+        calculator.numPad(7);
+        calculator.numPad(5);
+        calculator.numPad(9);
+        calculator.equal();
+        assertEquals(calculator.getResult().getNumerator(),314985);
+        assertEquals(calculator.getResult().getDenominator(),1);
+
+        calculator.clear();
+        calculator.numPad(5);
+        calculator.slash();
+        calculator.numPad(3);
+        calculator.multi();
+        calculator.numPad(8);
+        calculator.slash();
+        calculator.numPad(9);
+        calculator.equal();
+        assertEquals(calculator.getResult().getNumerator(),40);
+        assertEquals(calculator.getResult().getDenominator(),27);
+        assertEquals(calculator.getResult().doubleValue(),40.0/27.0,1e-7);
+    }
+
+    @Test
+    public void calculatorDivision_isCorrect() throws Exception
+    {
+        Calculator calculator=new Calculator();
+        calculator.numPad(8);
+        calculator.numPad(4);
+        calculator.div();
+        calculator.numPad(5);
+        calculator.equal();
+        assertEquals(calculator.getResult().getNumerator(),84);
+        assertEquals(calculator.getResult().getDenominator(),5);
+
+        calculator.clear();
+        calculator.numPad(4);
+        calculator.numPad(1);
+        calculator.numPad(5);
+        calculator.div();
+        calculator.numPad(7);
+        calculator.numPad(5);
+        calculator.numPad(9);
+        calculator.equal();
+        assertEquals(calculator.getResult().getNumerator(),415);
+        assertEquals(calculator.getResult().getDenominator(),759);
+
+        calculator.clear();
+        calculator.numPad(5);
+        calculator.slash();
+        calculator.numPad(3);
+        calculator.div();
+        calculator.numPad(8);
+        calculator.slash();
+        calculator.numPad(9);
+        calculator.equal();
+        assertEquals(calculator.getResult().getNumerator(),45);
+        assertEquals(calculator.getResult().getDenominator(),24);
+        assertEquals(calculator.getResult().doubleValue(),45.0/24.0,1e-7);
+    }
+
+    @Test
+    public void calculatorEqual_isCorrect() throws Exception
+    {
+        Calculator calculator=new Calculator();
+        calculator.equal();
+        assertEquals(calculator.getResult().getNumerator(),0);
+        assertEquals(calculator.getResult().getDenominator(),1);
+        assertEquals(calculator.getCalcOperator(), Calculator.CalcOperator.None);
+        assertEquals(calculator.getInputIndex(),-1);
+        assertEquals(calculator.getInputValue(0),0);
+        assertEquals(calculator.getInputValue(1),1);
+
+        calculator.numPad(6);
+        calculator.slash();
+        calculator.numPad(4);
+        calculator.plus();
+        calculator.numPad(4);
+        calculator.slash();
+        calculator.numPad(2);
+        calculator.equal();
+        assertEquals(calculator.getResult().getNumerator(),28);
+        assertEquals(calculator.getResult().getDenominator(),8);
+        assertEquals(calculator.getCalcOperator(), Calculator.CalcOperator.None);
+        assertEquals(calculator.getInputIndex(),-1);
+        assertEquals(calculator.getInputValue(0),0);
+        assertEquals(calculator.getInputValue(1),1);
+
+        calculator.numPad(7);
+        calculator.slash();
+        calculator.numPad(8);
+        calculator.plus();
+        calculator.numPad(6);
+        calculator.slash();
+        calculator.numPad(5);
+        calculator.equal();
+        assertEquals(calculator.getResult().getNumerator(),83);
+        assertEquals(calculator.getResult().getDenominator(),40);
+        assertEquals(calculator.getCalcOperator(), Calculator.CalcOperator.None);
+        assertEquals(calculator.getInputIndex(),-1);
+        assertEquals(calculator.getInputValue(0),0);
+        assertEquals(calculator.getInputValue(1),1);
+
+
+
+        calculator.plus();
+        calculator.numPad(1);
+        calculator.slash();
+        calculator.numPad(2);
+        calculator.equal();
+        assertEquals(calculator.getResult().getNumerator(),206);
+        assertEquals(calculator.getResult().getDenominator(),80);
+        assertEquals(calculator.getCalcOperator(), Calculator.CalcOperator.None);
+        assertEquals(calculator.getInputIndex(),-1);
+        assertEquals(calculator.getInputValue(0),0);
+        assertEquals(calculator.getInputValue(1),1);
+
+
+
+
+
+
+
+
+
     }
 }
