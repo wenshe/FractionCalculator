@@ -8,7 +8,7 @@ import static org.junit.Assert.*;
  * Created by Andrew on 2017/5/28.
  */
 
-public class FractionNumberUniTest
+public class FractionNumberUnitTest
 {
     @Test
     public void fractionConstructor_isCorrect() throws Exception

@@ -97,8 +97,9 @@ public class Calculator
     {
         if ((_inputIndex >= 0) && (_inputIndex < 2))
         {
-            if ((num >= 0) && (num <= 9) && (_v[_inputIndex] <= MAX_NUMBER))
-                _v[_inputIndex] = (_v[_inputIndex] * 10 + num);
+            int newValue= (_v[_inputIndex] * 10 + num);
+            if ((num >= 0) && (num <= 9) && (newValue <= MAX_NUMBER))
+                _v[_inputIndex] = newValue;
         }else if (_inputIndex==-1)
         {
             _inputIndex=0;
@@ -201,6 +202,8 @@ public class Calculator
     {
         return _result;
     }
+
+    public CalcStatus getCalcStatus() { return _calcStatus; }
 }
 
 
