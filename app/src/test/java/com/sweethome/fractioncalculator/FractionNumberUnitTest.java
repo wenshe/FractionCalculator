@@ -3,6 +3,7 @@ package com.sweethome.fractioncalculator;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 /**
  * Created by Andrew on 2017/5/28.
@@ -69,6 +70,52 @@ public class FractionNumberUnitTest
         assertEquals(2.0,f14_7.doubleValue(),1e-7);
         assertEquals(9999.0*9999.0,f9999.mul(f9999).doubleValue(),1e-7);
         assertEquals(99999999.0*99999999.0,f99999999.mul(f99999999).doubleValue(),1e-7);
+
+    }
+    @Test
+    public void fractionSimplify_isCorrect() throws Exception
+    {
+        int[] v={
+                1,  1,  1, 1,
+                2,  2,  1, 1,
+                3,  3,  1, 1,
+                4,  4,  1, 1,
+                5,  5,  1, 1,
+                6,  6,  1, 1,
+                49, 49, 1, 1,
+                64, 64, 1, 1,
+                100,100,1, 1,
+                105,105,1, 1,
+                150,150,1, 1,
+                420,420,1, 1,
+                2,  4,  1, 2,   // 2/4 => 1/2
+                2,  6,  1, 3,   // 2/6 => 1/3
+                12, 18, 2, 3,   // 12/18 => 2/3
+                30, 40, 3, 4,   // 30/40 => 3/4
+                36, 60, 3, 5,   // 36/60 => 3/5
+                4,  2,  2, 1,   // 4/2 => 2/1
+                6,  2,  3, 1,   // 6/2 => 3/1
+                18, 12, 3, 2,   // 18/12 => 3/2
+                40, 30, 4, 3,   // 40/30 => 4/3
+                60, 36, 5, 3,   // 60/36 => 5/3
+                0,  0,  0, 0};  //end
+
+        for (int i=0;v[i]!=0;i+=4)
+        {
+            Fraction f=new Fraction(v[i],v[i+1]);
+            f.simplify();
+            assertEquals(v[i+2],f.getNumerator());
+            assertEquals(v[i+3],f.getDenominator());
+        }
+
+
+
+
+
+
+
+
+
 
     }
 }

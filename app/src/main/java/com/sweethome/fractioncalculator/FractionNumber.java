@@ -121,5 +121,17 @@ final class Fraction extends Number {
         this.setValue(this.numerator*value.denominator,this.denominator*value.numerator);
         return this;
     }
-
+    public long gcd()
+    {
+        long a=getNumerator();
+        long b=getDenominator();
+        if(b!=0) while((a %= b)!=0 && (b %= a)!=0);
+        return a + b;
+    }
+    public void simplify()
+    {
+        long v=gcd();
+        if (v!=0)
+            setValue(getNumerator()/v,getDenominator()/v);
+    }
 }

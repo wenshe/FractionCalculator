@@ -95,7 +95,10 @@ public class CalculatorUnitTest
         calculator.numPad(2);
         calculator.numPad(3);
         calculator.clearError();
-        calculatorReset_isCorrect(calculator);
+        assertEquals(calculator.getInputValue(0),0);
+        assertEquals(calculator.getInputValue(1),0);
+        assertEquals(calculator.getInputIndex(),-1);
+
 
         calculator.clear();
         calculator.numPad(1);
@@ -178,11 +181,11 @@ public class CalculatorUnitTest
         assertEquals(calculator.getInputValue(0),1);
         assertEquals(calculator.getInputValue(1),0);
         calculator.backSp();
-        assertEquals(calculator.getInputIndex(),0);
+        assertEquals(calculator.getInputIndex(),-1);
         assertEquals(calculator.getInputValue(0),0);
         assertEquals(calculator.getInputValue(1),0);
         calculator.backSp();
-        assertEquals(calculator.getInputIndex(),0);
+        assertEquals(calculator.getInputIndex(),-1);
         assertEquals(calculator.getInputValue(0),0);
         assertEquals(calculator.getInputValue(1),0);
     }
@@ -234,8 +237,8 @@ public class CalculatorUnitTest
         calculator.slash();
         calculator.numPad(9);
         calculator.equal();
-        assertEquals(calculator.getResult().getNumerator(),42);
-        assertEquals(calculator.getResult().getDenominator(),27);
+        assertEquals(calculator.getResult().getNumerator(),14);
+        assertEquals(calculator.getResult().getDenominator(),9);
         assertEquals(calculator.getResult().doubleValue(),42.0/27.0,1e-7);
     }
 
@@ -272,8 +275,8 @@ public class CalculatorUnitTest
         calculator.slash();
         calculator.numPad(9);
         calculator.equal();
-        assertEquals(calculator.getResult().getNumerator(),21);
-        assertEquals(calculator.getResult().getDenominator(),27);
+        assertEquals(calculator.getResult().getNumerator(),7);
+        assertEquals(calculator.getResult().getDenominator(),9);
         assertEquals(calculator.getResult().doubleValue(),21.0/27.0,1e-7);
     }
 
@@ -313,6 +316,18 @@ public class CalculatorUnitTest
         assertEquals(calculator.getResult().getNumerator(),40);
         assertEquals(calculator.getResult().getDenominator(),27);
         assertEquals(calculator.getResult().doubleValue(),40.0/27.0,1e-7);
+
+
+        calculator.clear();
+        calculator.numPad(5);
+        calculator.equal();
+        calculator.multi();
+        calculator.multi();
+        calculator.equal();
+        assertEquals(calculator.getResult().doubleValue(),5,1e-7);
+        assertEquals(calculator.getInputIndex(),-1);
+
+
     }
 
     @Test
@@ -348,8 +363,8 @@ public class CalculatorUnitTest
         calculator.slash();
         calculator.numPad(9);
         calculator.equal();
-        assertEquals(calculator.getResult().getNumerator(),45);
-        assertEquals(calculator.getResult().getDenominator(),24);
+        assertEquals(calculator.getResult().getNumerator(),15);
+        assertEquals(calculator.getResult().getDenominator(),8);
         assertEquals(calculator.getResult().doubleValue(),45.0/24.0,1e-7);
     }
 
@@ -373,8 +388,8 @@ public class CalculatorUnitTest
         calculator.slash();
         calculator.numPad(2);
         calculator.equal();
-        assertEquals(calculator.getResult().getNumerator(),28);
-        assertEquals(calculator.getResult().getDenominator(),8);
+        assertEquals(calculator.getResult().getNumerator(),7);
+        assertEquals(calculator.getResult().getDenominator(),2);
         assertEquals(calculator.getCalcOperator(), Calculator.CalcOperator.None);
         assertEquals(calculator.getInputIndex(),-1);
         assertEquals(calculator.getInputValue(0),0);
@@ -402,8 +417,8 @@ public class CalculatorUnitTest
         calculator.slash();
         calculator.numPad(2);
         calculator.equal();
-        assertEquals(calculator.getResult().getNumerator(),206);
-        assertEquals(calculator.getResult().getDenominator(),80);
+        assertEquals(calculator.getResult().getNumerator(),103);
+        assertEquals(calculator.getResult().getDenominator(),40);
         assertEquals(calculator.getCalcOperator(), Calculator.CalcOperator.None);
         assertEquals(calculator.getInputIndex(),-1);
         assertEquals(calculator.getInputValue(0),0);

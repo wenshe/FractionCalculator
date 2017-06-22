@@ -77,15 +77,25 @@ public class Calculator
 
     public void clearError()
     {
-        clearInputValue();
+        if (_inputIndex>=0)
+        {
+            clearInputValue();
+            _inputIndex=-1;
+        }
     }
 
     public void backSp()
     {
         if ((_inputIndex >= 0) && (_inputIndex < 2))
         {
-            if ((_v[_inputIndex] == 0) && (_inputIndex > 0))
+            if (_v[_inputIndex]<=9 && _inputIndex==0)
+            {
+                _v[_inputIndex] = 0;
+                _inputIndex = -1;
+            }else if ((_v[_inputIndex] == 0) && (_inputIndex >= 0))
+            {
                 _inputIndex -= 1;
+            }
             else
             {
                 _v[_inputIndex] /= 10;
@@ -110,25 +120,29 @@ public class Calculator
 
     public void plus()
     {
-        equal();
+        if (_inputIndex>=0)
+            equal();
         _calcOperator = Calculator.CalcOperator.Plus;
     }
 
     public void minus()
     {
-        equal();
+        if (_inputIndex>=0)
+            equal();
         _calcOperator = Calculator.CalcOperator.Minus;
     }
 
     public void multi()
     {
-        equal();
+        if (_inputIndex>=0)
+            equal();
         _calcOperator = Calculator.CalcOperator.Multi;
     }
 
     public void div()
     {
-        equal();
+        if (_inputIndex>=0)
+            equal();
         _calcOperator = Calculator.CalcOperator.Div;
     }
 
@@ -142,46 +156,50 @@ public class Calculator
 
     public void equal()
     {
-        try
+        if (_inputIndex>=0)
         {
-            Fraction v = getInputValue();
-            switch (_calcOperator)
+            try
             {
-                case None:
-                    if (_inputIndex>=0)
-                        _result = v;
-                    break;
-                case Plus:
-                    _result.add(v);
-                    break;
-                case Minus:
-                    _result.dec(v);
-                    break;
-                case Multi:
-                    _result.mul(v);
-                    break;
-                case Div:
-                    if (v.getNumerator() == 0)
-                    {
-                        _calcStatus = Calculator.CalcStatus.DivByZero;
-                    } else
-                    {
-                        _result.div(v);
-                    }
-                    break;
-            }
-            _calcOperator = Calculator.CalcOperator.None;
-            clearInputValue();
-            _v[0]=0;
-            _v[1]=1;
-            _inputIndex=-1;
-        } catch (Exception e)
-        {
-            if (e.getMessage() == "DivByZero")
+                Fraction v = getInputValue();
+                switch (_calcOperator)
+                {
+                    case None:
+                        if (_inputIndex>=0)
+                            _result = v;
+                        break;
+                    case Plus:
+                        _result.add(v);
+                        break;
+                    case Minus:
+                        _result.dec(v);
+                        break;
+                    case Multi:
+                        _result.mul(v);
+                        break;
+                    case Div:
+                        if (v.getNumerator() == 0)
+                        {
+                            _calcStatus = Calculator.CalcStatus.DivByZero;
+                        } else
+                        {
+                            _result.div(v);
+                        }
+                        break;
+                }
+                _calcOperator = Calculator.CalcOperator.None;
+                clearInputValue();
+                _v[0]=0;
+                _v[1]=1;
+                _inputIndex=-1;
+                _result.simplify();
+            } catch (Exception e)
             {
-                _calcStatus = Calculator.CalcStatus.DivByZero;
+                if (e.getMessage() == "DivByZero")
+                {
+                    _calcStatus = Calculator.CalcStatus.DivByZero;
+                }
+                e.printStackTrace();
             }
-            e.printStackTrace();
         }
     }
     public long getInputValue(int index)
