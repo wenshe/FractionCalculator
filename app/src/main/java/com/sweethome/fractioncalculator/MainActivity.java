@@ -9,6 +9,7 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -141,6 +142,32 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
         UpdateDisplayPanel();
     }
+    private float DrawFractionNumber(long v1,long v2,Canvas ACanvas,float x,float y,@NonNull Paint textPaint)
+    {
+        String str1=String.valueOf(v1);
+        String str2=String.valueOf(v2);
+        float w1=textPaint.measureText(str1);
+        float w2=textPaint.measureText(str2);
+        float w=Math.max(w1,w2);
+        float x1=(w-w1)/2.0f;
+        float x2=(w-w2)/2.0f;
+        Paint linePaint=new Paint();
+        linePaint.setStrokeWidth(10);
+        linePaint.setColor(Color.WHITE);
+
+        ACanvas.drawText(str1,x+x1,y,textPaint);
+        ACanvas.drawText(str2,x+x2,y+84,textPaint);
+        ACanvas.drawLine(x,y+16,x+w,y+16,linePaint);
+        return w;
+    }
+    private void DrawFractionNumber(long v1,Canvas ACanvas,float x,float y,@NonNull Paint textPaint)
+    {
+
+    }
+    private void DrawNumber(long v1,Canvas ACanvas,float x,float y,@NonNull Paint textPaint)
+    {
+
+    }
     private void UpdateDisplayPanel()
     {
         ImageView imageView1=(ImageView)findViewById(R.id.imageView1);
@@ -150,13 +177,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         Canvas tempCanvas = new Canvas(tempBitmap);
 
         Paint textPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
-        textPaint.setTextSize(128);
+        textPaint.setTextSize(72);
         textPaint.setColor(Color.WHITE);
 
         int inputIndex=_calculator.getInputIndex();
         long v0=_calculator.getInputValue(0);
         long v1=_calculator.getInputValue(1);
         Fraction result=_calculator.getResult();
+
         String str=new String();
         if (inputIndex==-1)
         {
@@ -202,8 +230,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
         }
 
-        tempCanvas.drawText(str,8,128,textPaint);
 
+
+        //tempCanvas.drawText(str,8,128,textPaint);
+        DrawFractionNumber(1,456,tempCanvas,40,128,textPaint);
 
         //Attach the canvas to the ImageView
         imageView1.setImageDrawable(new BitmapDrawable(getResources(), tempBitmap));

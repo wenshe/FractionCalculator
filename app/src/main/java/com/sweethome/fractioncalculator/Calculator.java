@@ -191,7 +191,7 @@ public class Calculator
                 _v[0]=0;
                 _v[1]=1;
                 _inputIndex=-1;
-                _result.simplify();
+                //_result.simplify();
             } catch (Exception e)
             {
                 if (e.getMessage() == "DivByZero")

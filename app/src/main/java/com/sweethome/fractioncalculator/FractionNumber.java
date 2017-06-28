@@ -13,7 +13,7 @@ final class Fraction extends Number {
     {
         this.setValue(0,1);
     }
-    public Fraction(int numerator, int denominator)
+    public Fraction(long numerator, long denominator)
     {
         this.setValue(numerator,denominator);
     }
@@ -22,7 +22,7 @@ final class Fraction extends Number {
         this.numerator=f.numerator;
         this.denominator=f.denominator;
     }
-    public Fraction(int numerator) {
+    public Fraction(long numerator) {
         this.setValue(numerator,1);
     }
 
@@ -35,12 +35,12 @@ final class Fraction extends Number {
         return this.denominator;
     }
 
-    public void setNumerator(int numerator)
+    public void setNumerator(long numerator)
     {
         setValue(numerator,this.denominator);
     }
 
-    public void setDenominator(int denominator)
+    public void setDenominator(long denominator)
     {
         setValue(this.numerator,denominator);
     }
@@ -103,24 +103,31 @@ final class Fraction extends Number {
 
     public Fraction add(Fraction value)
     {
-        this.setValue(this.numerator*value.denominator+value.numerator*this.denominator,this.denominator*value.denominator);
+        long gcd=MathUtil.GCD(this.denominator,value.denominator);
+        this.setValue((this.numerator*value.denominator+value.numerator*this.denominator)/gcd,
+                      (this.denominator*value.denominator)/gcd);
         return this;
     }
     public Fraction dec(Fraction value)
     {
-        this.setValue(this.numerator*value.denominator-value.numerator*this.denominator,this.denominator*value.denominator);
+        long gcd=MathUtil.GCD(this.denominator,value.denominator);
+        this.setValue((this.numerator*value.denominator-value.numerator*this.denominator)/gcd,
+                      (this.denominator*value.denominator)/gcd);
         return this;
     }
     public Fraction mul(Fraction value)
     {
         this.setValue(this.numerator*value.numerator,this.denominator*value.denominator);
+        this.simplify();
         return this;
     }
     public Fraction div(Fraction value)
     {
         this.setValue(this.numerator*value.denominator,this.denominator*value.numerator);
+        this.simplify();
         return this;
     }
+    /*
     public long gcd()
     {
         long a=getNumerator();
@@ -128,10 +135,19 @@ final class Fraction extends Number {
         if(b!=0) while((a %= b)!=0 && (b %= a)!=0);
         return a + b;
     }
+    */
     public void simplify()
     {
-        long v=gcd();
+        long a=getNumerator();
+        long b=getDenominator();
+        long v=MathUtil.GCD(a,b);
         if (v!=0)
             setValue(getNumerator()/v,getDenominator()/v);
+    }
+    public Fraction getSimplifyFraction()
+    {
+        Fraction result=new Fraction(this.getNumerator(),this.getDenominator());
+        result.simplify();
+        return result;
     }
 }
