@@ -128,7 +128,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 _calculator.div();
                 break;
             case R.id.btnClear:
-                _calculator.clear();;
+                _calculator.clear();
                 break;
             case R.id.btnClearError:
                 _calculator.clearError();

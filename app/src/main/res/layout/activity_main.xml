@@ -51,7 +51,7 @@
         android:layout_marginEnd="8dp">
 
         <Button
-            android:id="@+id/btnMultiplication "
+            android:id="@+id/btnMultiplication"
             android:layout_width="64dp"
             android:layout_height="64dp"
             android:layout_column="3"
@@ -221,7 +221,7 @@
             tools:layout_editor_absoluteY="124dp"/>
 
         <Button
-            android:id="@+id/btnDivision "
+            android:id="@+id/btnDivision"
             android:layout_width="64dp"
             android:layout_height="64dp"
             android:layout_column="3"
